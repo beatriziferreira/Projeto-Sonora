@@ -13,7 +13,7 @@ public class Musica {
         this.duracaoSegundos = duracaoSegundos;
         id++;
     }
-    public static int getId() {
+    public int getId() {
         return id;
     }
 

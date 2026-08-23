@@ -10,7 +10,7 @@ public class Playlist {
     public Playlist(String nome , User dono) {
         this.nome = nome;
         this.dono = dono;
-        }
+    }
 
     public String getNome() {
         return nome;
