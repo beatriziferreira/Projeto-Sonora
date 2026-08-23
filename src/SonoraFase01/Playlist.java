@@ -25,20 +25,19 @@ public class Playlist {
     }
 
     public boolean adicionarMusica(Musica musica) {
-        quantidadeMusicas++;
+
         for (int i = 0; i < musicas.length; i++) {
             if (musicas[i] == null) {
                 musicas[i] = musica;
+                quantidadeMusicas++;
                 return true;
             }
             else if (musicas[i].getTitulo().equals(musica.getTitulo()) && musicas[i].getArtista().equals(musica.getArtista())) {
                 System.out.println("A música já está na playlist.");
-                quantidadeMusicas--;
                 return false;
             }
             else if (quantidadeMusicas >= musicas.length) {
                 System.out.println("A playlist está cheia.");
-                quantidadeMusicas--;
                 return false;
             }
         }
