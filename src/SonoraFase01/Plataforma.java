@@ -1,8 +1,8 @@
 package SonoraFase01;
 
 public class Plataforma {
-    User[] usuarios = new User[500];
-    Musica[] musicas = new Musica[500];
+    private User[] usuarios = new User[500];
+    private Musica[] musicas = new Musica[500];
 
     public boolean cadastrarUsuario(User usuario) {
         for (int i = 0; i < usuarios.length; i++) {
