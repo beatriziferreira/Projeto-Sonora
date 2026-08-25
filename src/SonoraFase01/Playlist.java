@@ -36,8 +36,8 @@ public class Playlist {
                 System.out.println("A música já está na playlist.");
                 return false;
             }
-            else if (quantidadeMusicas >= musicas.length) {
-                System.out.println("A playlist está cheia.");
+            else if (quantidadeMusicas >= musicas.length || musica == null) {
+                System.out.println("A playlist está cheia ou a música é inválida.");
                 return false;
             }
         }
@@ -54,8 +54,10 @@ public class Playlist {
 
     public boolean removerMusica(int posicao) {
         if (posicao >= 0 && posicao < quantidadeMusicas) {
-            musicas[posicao] = null;
-            musicas[posicao] = musicas[quantidadeMusicas - 1];
+            for (int i = posicao; i < quantidadeMusicas; i++) {
+                musicas[i] = musicas[i - 1]; // Se der ruim é aq que arruma
+            }
+            musicas[quantidadeMusicas] = null;
             quantidadeMusicas--;
             return true;
         }

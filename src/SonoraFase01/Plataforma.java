@@ -45,7 +45,7 @@ public class Plataforma {
 
     public Musica buscarMusica (String titulo) {
         for (int i = 0; i < musicas.length; i++) {
-            if (musicas[i] != null && musicas[i].getTitulo().equals(titulo)) {
+            if (musicas[i] != null && musicas[i].getTitulo().equalsIgnoreCase(titulo)) {
                 return musicas[i];
             }
         }
@@ -112,8 +112,7 @@ public class Plataforma {
         System.out.println("A plataforma está cheia.");
         return false;
     }
-
-
+    
 }
 
 

@@ -17,6 +17,7 @@ public class App {
             System.out.println("5 - Buscar música por título");
             System.out.println("6 - Reproduzir uma música");
             System.out.println("7 - Listar acervo de músicas");
+            System.out.println("8 - Exibir uma playlist");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scan.nextInt();
@@ -68,12 +69,12 @@ public class App {
 
                         User dono = null;
                         for (int i = 0; i < plataforma.getQuantidadeUsuarios(); i++) {
-                            User usuario = plataforma.getUsuarioNaPosicao(i);
-                            if (usuario != null && usuario.getNome().equals(nomeDono)) {
-                                dono = usuario;
+                            dono = plataforma.getUsuarioNaPosicao(i);
+                            if (dono != null && dono.getNome().equalsIgnoreCase(nomeDono)) {
                                 break;
                             }
-                        }
+                        } 
+
                         if (dono == null) {
                             System.out.println("Usuário não encontrado. Crie o usuário antes de criar a playlist.");
                             break;
@@ -89,15 +90,14 @@ public class App {
                     } else if (escolhaPlaylist == 2) {
                         System.out.println("Digite o nome da playlist: ");
                         String nomePlaylist = scan.next();
-
                         Playlist playlist = null;
                         for (int i = 0; i < plataforma.getQuantidadePlaylists(); i++) {
-                            Playlist p = plataforma.getPlaylistNaPosicao(i);
-                            if (p != null && p.getNome().equals(nomePlaylist)) {
-                                playlist = p;
+                            playlist = plataforma.getPlaylistNaPosicao(i);
+                            if (playlist != null && playlist.getNome().equals(nomePlaylist)) {
                                 break;
                             }
                         }
+
                         if (playlist == null) {
                             System.out.println("Playlist não encontrada.");
                             break;
@@ -111,17 +111,32 @@ public class App {
                                 } else {
                                     System.out.println("Falha ao adicionar a música à playlist.");
                                 }
-                            } else {
-                                System.out.println("Música não encontrada na plataforma.");
                             }
                         }
+
                     }
+
+                    
                     break;
                 case 4:
-                    // Implementar busca de música por ID
+                    System.out.print("Digite o ID da música: ");
+                    int idMusica = scan.nextInt();
+                    Musica musicaEncontrada = plataforma.buscarMusica(idMusica);
+                    if (musicaEncontrada != null) {
+                        System.out.println("Música encontrada: " + musicaEncontrada.getTitulo() + " - " + musicaEncontrada.getArtista());
+                    } else {
+                        System.out.println("Música não encontrada.");
+                    }
                     break;
                 case 5:
-                    // Implementar busca de música por título
+                    System.out.print("Digite o título da música: ");
+                    String tituloMusica = scan.next();
+                    Musica musicaEncontradaTitulo = plataforma.buscarMusica(tituloMusica);
+                    if (musicaEncontradaTitulo != null) {
+                        System.out.println("Música encontrada: " + musicaEncontradaTitulo.getTitulo() + " - " + musicaEncontradaTitulo.getArtista());
+                    } else {
+                        System.out.println("Música não encontrada.");
+                    }
                     break;
                 case 6:
                     // Implementar reprodução de música
@@ -129,6 +144,9 @@ public class App {
                 case 7:
                     // Implementar listagem do acervo de músicas
                     break;
+                case 8:
+                    Playlist playlist = null;
+                    playlist.exibirPlaylist();
                 case 0:
                     System.out.println("Saindo do programa...");
                     break;
@@ -138,4 +156,5 @@ public class App {
         } while (opcao != 0);
 
     }
+
 }
