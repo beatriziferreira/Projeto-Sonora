@@ -105,7 +105,7 @@ public class Plataforma {
                 playlists[i] = playlist;
                 return true;
             }
-            else if (playlists == null) {
+            else if (playlist == null) {
                 return false;
             }
         }

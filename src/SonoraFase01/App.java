@@ -8,7 +8,6 @@ public class App {
         int opcao = 0;
         Plataforma plataforma = new Plataforma();
         App.popularExemplos(plataforma);
-       
 
         do {
             System.out.println("== SONORA ==");
@@ -19,7 +18,7 @@ public class App {
             System.out.println("5 - Buscar música por título");
             System.out.println("6 - Reproduzir uma música");
             System.out.println("7 - Listar acervo de músicas");
-            System.out.println("8 - Exibir uma playlist");
+            System.out.println("8 - Gerenciair uma playlist");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scan.nextInt();
@@ -60,7 +59,8 @@ public class App {
                     break;
 
                 case 3:
-                    System.out.println("Deseja criar uma playlist (1) ou adicionar músicas a uma playlist existente (2)?");
+                    System.out.println(
+                            "Deseja criar uma playlist (1) ou adicionar músicas a uma playlist existente (2)?");
                     int escolhaPlaylist = scan.nextInt();
                     if (escolhaPlaylist == 1) {
                         System.out.println("Digite o nome da playlist: ");
@@ -75,7 +75,7 @@ public class App {
                             if (dono != null && dono.getNome().equalsIgnoreCase(nomeDono)) {
                                 break;
                             }
-                        } 
+                        }
 
                         if (dono == null) {
                             System.out.println("Usuário não encontrado. Crie o usuário antes de criar a playlist.");
@@ -102,7 +102,6 @@ public class App {
 
                         if (playlist == null) {
                             System.out.println("Playlist não encontrada.");
-                            break;
                         } else {
                             System.out.println("Digite o título da música a ser adicionada: ");
                             String tituloMusica = scan.next();
@@ -120,12 +119,11 @@ public class App {
                     break;
                 case 4:
                     System.out.print("Digite o ID da música: ");
-                    int idMusica = scan.nextInt();
-                    Musica musicaEncontrada = plataforma.buscarMusica(idMusica);
+                    int id = scan.nextInt();
+                    Musica musicaEncontrada = plataforma.buscarMusica(id);
                     if (musicaEncontrada != null) {
-                        System.out.println("Música encontrada: " + musicaEncontrada.getTitulo() + " - " + musicaEncontrada.getArtista());
-                    } else {
-                        System.out.println("Música não encontrada.");
+                        System.out.println("Música encontrada: " + musicaEncontrada.getTitulo() + " - "
+                                + musicaEncontrada.getArtista());
                     }
                     break;
                 case 5:
@@ -133,10 +131,8 @@ public class App {
                     String tituloMusica = scan.next();
                     Musica musicaEncontradaTitulo = plataforma.buscarMusica(tituloMusica);
                     if (musicaEncontradaTitulo != null) {
-                        System.out.println("Música encontrada: " + musicaEncontradaTitulo.getTitulo() + " - " + musicaEncontradaTitulo.getArtista());
-                    } else {
-                        System.out.println("Música não encontrada.");
-                    }
+                        System.out.println("Música encontrada: " + musicaEncontradaTitulo.getTitulo() + " - "
+                        + musicaEncontradaTitulo.getArtista());}
                     break;
                 case 6:
                     // Implementar reprodução de música
@@ -145,8 +141,22 @@ public class App {
                     // Implementar listagem do acervo de músicas
                     break;
                 case 8:
+                    System.out.println("Digite o nome da playlist: ");
+                    String nomePlaylist = scan.next();
                     Playlist playlist = null;
-                    playlist.exibirPlaylist();
+
+                    for (int i = 0; i < plataforma.getQuantidadePlaylists(); i++) {
+                        playlist = plataforma.getPlaylistNaPosicao(i);
+
+                        if (playlist != null && playlist.getNome().equalsIgnoreCase(nomePlaylist)) {
+                            playlist.exibirPlaylist();
+                            break;
+                        }
+                    }
+                    if (playlist == null) {
+                        System.out.println("Playlist não encontrada.");
+                    }
+                    break;
                 case 0:
                     System.out.println("Saindo do programa...");
                     break;
@@ -157,14 +167,17 @@ public class App {
 
     }
 
-    private static void popularExemplos(Plataforma plataforma){
-        plataforma.cadastrarMusica((new Musica("Mus1", "art1", 145)));
-        plataforma.cadastrarMusica((new Musica("Mus2", "art2", 155)));
-        plataforma.cadastrarMusica((new Musica("Mus3", "art3", 160)));
-        Musica mus4 = new Musica("mus4", "art4", 145);
+    private static void popularExemplos(Plataforma plataforma) {
+        plataforma.cadastrarMusica((new Musica("PerfectSystem", "Oingo Boingo", 226)));
+        plataforma.cadastrarMusica((new Musica("Fine", "Lemon Demon", 200)));
+        plataforma.cadastrarMusica((new Musica("TurnTheLightsOff", "Tally Hall", 210)));
+        Musica mus4 = new Musica("Duvet", "Boa", 204);
         plataforma.cadastrarMusica(mus4);
-        plataforma.cadastrarUsuario((new User("Beatriz", "bea@gmail.com")));
-        
+        User usuario = new User("Beatriz", "bea@gmail.com");
+        plataforma.cadastrarUsuario(usuario);
+        Playlist playlist1 = new Playlist("Play1", usuario );
+        plataforma.cadastrarPlaylist(playlist1);
+
     }
 
 }

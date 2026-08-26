@@ -1,7 +1,8 @@
 package SonoraFase01;
 
 public class Musica {
-    private static int id;
+    private static int contador = 0;
+    private int id;
     private String titulo;
     private String artista;
     private int duracaoSegundos;
@@ -11,7 +12,8 @@ public class Musica {
         this.titulo = titulo;
         this.artista = artista;
         this.duracaoSegundos = duracaoSegundos;
-        id++;
+        contador++;
+        id = contador;
     }
     public int getId() {
         return id;
