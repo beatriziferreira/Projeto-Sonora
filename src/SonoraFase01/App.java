@@ -7,6 +7,8 @@ public class App {
         Scanner scan = new Scanner(System.in);
         int opcao = 0;
         Plataforma plataforma = new Plataforma();
+        App.popularExemplos(plataforma);
+       
 
         do {
             System.out.println("== SONORA ==");
@@ -115,8 +117,6 @@ public class App {
                         }
 
                     }
-
-                    
                     break;
                 case 4:
                     System.out.print("Digite o ID da música: ");
@@ -155,6 +155,16 @@ public class App {
             }
         } while (opcao != 0);
 
+    }
+
+    private static void popularExemplos(Plataforma plataforma){
+        plataforma.cadastrarMusica((new Musica("Mus1", "art1", 145)));
+        plataforma.cadastrarMusica((new Musica("Mus2", "art2", 155)));
+        plataforma.cadastrarMusica((new Musica("Mus3", "art3", 160)));
+        Musica mus4 = new Musica("mus4", "art4", 145);
+        plataforma.cadastrarMusica(mus4);
+        plataforma.cadastrarUsuario((new User("Beatriz", "bea@gmail.com")));
+        
     }
 
 }
