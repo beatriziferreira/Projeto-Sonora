@@ -159,8 +159,11 @@ public class App {
         plataforma.cadastrarMusica((new Musica("TurnTheLightsOff", "Tally Hall", 210)));
         Musica mus4 = new Musica("Duvet", "Boa", 204);
         plataforma.cadastrarMusica(mus4);
+        plataforma.cadastrarMusica((new Musica("CharliesInferno", "The Handsome Devil", 225)));
+
         User usuario = new User("Beatriz", "bea@gmail.com");
         plataforma.cadastrarUsuario(usuario);
+
         Playlist playlist1 = new Playlist("Play1", usuario);
         plataforma.cadastrarPlaylist(playlist1);
 
