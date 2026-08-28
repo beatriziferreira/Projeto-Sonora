@@ -68,7 +68,19 @@ public class Plataforma {
             return usuarios[posicao];
         }
         System.out.println("Posição inválida.");
-        return null;}
+        return null;
+    }
+
+    public Playlist buscarPlaylist (String nomePlaylist) {
+        for (int i = 0; i < playlists.length; i++) {
+            if (playlists[i] != null && playlists[i].getNome().equalsIgnoreCase(nomePlaylist)) {
+                return playlists[i];
+            }
+        }
+        System.out.println("Playlist não encontrada.");
+        return null;
+    }
+
 
     public int getQuantidadeMusicas() {
         int quantidadeMusicas = 0;
