@@ -56,6 +56,7 @@ public class Playlist {
         if (posicao >= 0 && posicao < quantidadeMusicas) {
             return musicas[posicao];
         }
+        
         throw new IndexOutOfBoundsException("Posição inválida.");
     }
 
