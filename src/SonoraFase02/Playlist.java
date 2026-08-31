@@ -10,7 +10,14 @@ public class Playlist {
     public Playlist(String nome , User dono) {
         this.nome = nome;
         this.dono = dono;
+        if (this.nome == null){
+            throw new IllegalArgumentException("O nome da playlist não pode ser nulo.");
+        }
+        if (this.dono == null){
+            throw new IllegalArgumentException("O dono não pode ser nulo.");
+        }
     }
+    
 
     public String getNome() {
         return nome;
@@ -36,10 +43,11 @@ public class Playlist {
                 System.out.println("A música já está na playlist.");
                 return false;
             }
-            else if (quantidadeMusicas >= musicas.length || musica == null) {
-                System.out.println("A playlist está cheia ou a música é inválida.");
+            else if (quantidadeMusicas >= musicas.length) {
+                System.out.println("A playlist está cheia.");
                 return false;
-            }
+            } 
+            
         }
         return false;
     }
@@ -48,8 +56,7 @@ public class Playlist {
         if (posicao >= 0 && posicao < quantidadeMusicas) {
             return musicas[posicao];
         }
-        System.out.println("Posição inválida.");
-        return null;
+        throw new IndexOutOfBoundsException("Posição inválida.");
     }
 
     public boolean removerMusica(int posicao) {
@@ -61,8 +68,7 @@ public class Playlist {
             quantidadeMusicas--;
             return true;
         }
-        System.out.println("Posição inválida.");
-        return false;
+        throw new IndexOutOfBoundsException("Posição inválida.");
     }
 
     public int getDuracaoTotal() {

@@ -14,6 +14,14 @@ public class Musica {
         this.duracaoSegundos = duracaoSegundos;
         contador++;
         id = contador;
+        if (this.titulo == null){
+            throw new IllegalArgumentException("O título não pode ser nulo.");
+        }
+        if (this.artista == null){
+            throw new IllegalArgumentException("O artista não pode ser nulo.");
+        }
+        if (this.duracaoSegundos <= 0){
+            throw new IllegalArgumentException("Duração inválida. A duração não pode ser menor ou igual a 0.");}
     }
     public int getId() {
         return id;

@@ -25,9 +25,6 @@ public class Plataforma {
                 musicas[i] = musica;
                 return true;
             }
-            else if (musica == null) {
-                return false;
-            }
         }
         System.out.println("A plataforma está cheia.");
         return false;

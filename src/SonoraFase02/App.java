@@ -21,24 +21,35 @@ public class App {
             System.out.println("8 - Gerenciair uma playlist");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção (Dica: não utilize espaços nos nomes): ");
-            opcao = scan.nextInt();
+            try {
+                opcao = Integer.parseInt(scan.next());
+            } catch (NumberFormatException e) {
+                System.out.print("Valor inválido. Digite um número. ");
+                opcao = Integer.parseInt(scan.next());
+            }
 
             switch (opcao) {
                 case 1:
+                    String titulo = " ";
+                    String artista = " ";
+                    int duracao = 0;
+
                     System.out.print("Digite o título da música: ");
-                    String titulo = scan.next();
+                    titulo = scan.next();
 
                     System.out.print("Digite o artista da música: ");
-                    String artista = scan.next();
+                    artista = scan.next();
 
                     System.out.print("Digite a duração da música (em segundos): ");
-                    int duracao = scan.nextInt();
+                    duracao = scan.nextInt();
 
-                    Musica novaMusica = new Musica(titulo, artista, duracao);
-                    if (plataforma.cadastrarMusica(novaMusica)) {
-                        System.out.println("Música cadastrada com sucesso!");
-                    } else {
-                        System.out.println("Falha ao cadastrar a música.");
+                    try {
+                        Musica novaMusica = new Musica(titulo, artista, duracao);
+                        if (plataforma.cadastrarMusica(novaMusica)) {
+                            System.out.println("Música cadastrada com sucesso!");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Falha ao cadastrar a música: " + e.getMessage());
                     }
                     break;
 
@@ -49,13 +60,15 @@ public class App {
                     System.out.print("Digite o e-mail do usuário: ");
                     String email = scan.next();
 
-                    User novoUsuario = new User(nome, email);
-
-                    if (plataforma.cadastrarUsuario(novoUsuario)) {
-                        System.out.println("Usuário cadastrado com sucesso!");
-                    } else {
-                        System.out.println("Falha ao cadastrar o usuário.");
+                    try {
+                        User novoUsuario = new User(nome, email);
+                        if (plataforma.cadastrarUsuario(novoUsuario)) {
+                            System.out.println("Usuário cadastrado com sucesso!");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Falha ao cadastrar usuário: " + e.getMessage());
                     }
+
                     break;
 
                 case 3:
@@ -71,12 +84,14 @@ public class App {
 
                         User dono = plataforma.buscarUsuario(nomeDono);
 
-                        if (dono != null && dono.getNome().equalsIgnoreCase(nomeDono)) {
-                            Playlist playlist = new Playlist(nomePlaylist, dono);
-                            if (plataforma.cadastrarPlaylist(playlist)) {
-                                System.out.println("Playlist criada com sucesso!");
-                            } else {
-                                System.out.println("Falha ao criar a playlist.");
+                        if (dono != null) {
+                            try {
+                                Playlist playlist = new Playlist(nomePlaylist, dono);
+                                if (plataforma.cadastrarPlaylist(playlist)) {
+                                    System.out.println("Playlist criada com sucesso!");
+                                }
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Falha ao criar playlist: " + e.getMessage());
                             }
                         }
 
@@ -91,13 +106,10 @@ public class App {
                             Musica musica = plataforma.buscarMusica(tituloMusica);
                             if (musica != null) {
                                 if (playlist.adicionarMusica(musica)) {
-                                    System.out.println("Música adicionada à playlist.");
-                                } else {
-                                    System.out.println("Falha ao adicionar a música à playlist.");
+                                    System.out.println("Música adicionada à playlist."); 
                                 }
                             }
                         }
-
                     }
                     break;
                 case 4:
@@ -119,17 +131,19 @@ public class App {
                     }
                     break;
                 case 6:
-                    System.out.println( "Informe a música que deseja reproduzir: " );
+                    System.out.println("Informe a música que deseja reproduzir: ");
                     String nomeMusica = scan.next();
                     Musica musicaReproduzir = plataforma.buscarMusica(nomeMusica);
-                    if (musicaReproduzir != null){
+                    if (musicaReproduzir != null) {
                         musicaReproduzir.reproduzir();
-                        System.out.println("Reproduzindo " + musicaReproduzir.getTitulo() + " - " + musicaReproduzir.getArtista() + " (" +  musicaReproduzir.getDuracaoFormatada() + ")");
-                        System.out.println("Reproduções totais de " + musicaReproduzir.getTitulo() + " na plataforma: " + musicaReproduzir.getReproducoes());
+                        System.out.println("Reproduzindo " + musicaReproduzir.getTitulo() + " - "
+                                + musicaReproduzir.getArtista() + " (" + musicaReproduzir.getDuracaoFormatada() + ")");
+                        System.out.println("Reproduções totais de " + musicaReproduzir.getTitulo() + " na plataforma: "
+                                + musicaReproduzir.getReproducoes());
                     }
                     break;
                 case 7:
-                    System.out.println( "=== ACERVO DE MÚSICAS DA PLATAFORMA ===" );
+                    System.out.println("=== ACERVO DE MÚSICAS DA PLATAFORMA ===");
                     plataforma.getMusicas();
                     break;
                 case 8:
@@ -155,14 +169,18 @@ public class App {
                                 int musicaExcluidaPos = scan.nextInt();
                                 Musica musicaExcluida = playlist.getNaPosicao(musicaExcluidaPos - 1);
 
-                                if (musicaExcluida != null){
-                                System.out.println("Deseja remover a música " + musicaExcluida.getTitulo() + "? (S/n):");
-                                String removerMus = scan.next();
+                                if (musicaExcluida != null) {
+                                    System.out.println(
+                                            "Deseja remover a música " + musicaExcluida.getTitulo() + "? (S/n):");
+                                    String removerMus = scan.next();
 
-                                    if (removerMus.equalsIgnoreCase("S")){
-                                        if (playlist.removerMusica(musicaExcluidaPos - 1));{
-                                        System.out.println("Música excluída com sucesso!");}
-                                    } else if (removerMus.equalsIgnoreCase("N")){
+                                    if (removerMus.equalsIgnoreCase("S")) {
+                                        if (playlist.removerMusica(musicaExcluidaPos - 1))
+                                            ;
+                                        {
+                                            System.out.println("Música excluída com sucesso!");
+                                        }
+                                    } else if (removerMus.equalsIgnoreCase("N")) {
                                         System.out.println("A música não foi removida.");
                                     } else {
                                         System.out.println("Opção inválida.");
@@ -172,14 +190,14 @@ public class App {
                                 break;
                             case 3:
                                 Musica playlistNula = playlist.getNaPosicao(0);
-                                if (playlistNula != null){
+                                if (playlistNula != null) {
                                     playlist.reproduzirTudo();
                                     System.out.println("--Reproduzindo a playlist " + playlist.getNome() + "--");
                                 } else {
                                     System.out.println("Playlist vazia, erro ao reproduzir.");
                                 }
 
-                            break;
+                                break;
 
                             default:
                                 System.out.println("Opção inválida.");
@@ -195,8 +213,9 @@ public class App {
                     System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcao != 0);
-        scan.close();
 
+        scan.close();
+        App.testarExceptions(plataforma);
     }
 
     private static void popularExemplos(Plataforma plataforma) {
@@ -215,6 +234,44 @@ public class App {
 
     }
 
-    
+    private static void testarExceptions(Plataforma plataforma) {
+
+        String titulo1 = null;
+        String artista1 = "X";
+        int duracao1 = 200;
+        try {
+            Musica novaMusica = new Musica(titulo1, artista1, duracao1);
+            if (plataforma.cadastrarMusica(novaMusica)) {
+                System.out.println("Música cadastrada com sucesso!");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Falha ao cadastrar a música: " + e.getMessage());
+        }
+
+        String titulo2 = "A";
+        String artista2 = null;
+        int duracao2 = 200;
+
+        try {
+            Musica novaMusica = new Musica(titulo2, artista2, duracao2);
+            if (plataforma.cadastrarMusica(novaMusica)) {
+                System.out.println("Música cadastrada com sucesso!");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Falha ao cadastrar a música: " + e.getMessage());
+        }
+
+        User dono = new User("joao", "caveira@gmail.com");
+        String nomePlaylist = null;
+        try {
+            Playlist playlist = new Playlist(nomePlaylist, dono);
+            if (plataforma.cadastrarPlaylist(playlist)) {
+                System.out.println("Playlist criada com sucesso!");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Falha ao criar playlist: " + e.getMessage());
+        }
+
+    }
 
 }
