@@ -63,24 +63,16 @@ public class Plataforma {
         return quantidade;
     }
 
-    public User getUsuarioNaPosicao(int posicao) {
-        if (posicao >= 0 && posicao < usuarios.length) {
-            return usuarios[posicao];
-        }
-        System.out.println("Posição inválida.");
-        return null;
-    }
-
-    public Playlist buscarPlaylist (String nomePlaylist) {
+    public User buscarUsuario (String dono) {
         for (int i = 0; i < playlists.length; i++) {
-            if (playlists[i] != null && playlists[i].getNome().equalsIgnoreCase(nomePlaylist)) {
-                return playlists[i];
+            if (usuarios[i] != null && usuarios[i].getNome().equalsIgnoreCase(dono)) {
+                return usuarios[i];
             }
         }
-        System.out.println("Playlist não encontrada.");
+        System.out.println("Usuário não encontrado. Crie o usuário antes de criar a playlist.");
         return null;
     }
-
+ 
 
     public int getQuantidadeMusicas() {
         int quantidadeMusicas = 0;
@@ -91,24 +83,6 @@ public class Plataforma {
         }
         return quantidadeMusicas;
 
-    }
-
-    public int getQuantidadePlaylists() {
-        int quantidadePlaylists = 0;
-        for (int i = 0; i < playlists.length; i++) {
-            if (playlists[i] != null) {
-                quantidadePlaylists++;
-            }
-        }
-        return quantidadePlaylists;
-    }
-
-    public Playlist getPlaylistNaPosicao(int posicao) {
-        if (posicao >= 0 && posicao < playlists.length) {
-            return playlists[posicao];
-        }
-        System.out.println("Posição inválida.");
-        return null;
     }
 
     public boolean cadastrarPlaylist(Playlist playlist) {
@@ -124,6 +98,26 @@ public class Plataforma {
         System.out.println("A plataforma está cheia.");
         return false;
     }
+    
+
+   public Playlist buscarPlaylist (String nomePlaylist) {
+        for (int i = 0; i < playlists.length; i++) {
+            if (playlists[i] != null && playlists[i].getNome().equalsIgnoreCase(nomePlaylist)) {
+                return playlists[i];
+            }
+        }
+        System.out.println("Playlist não encontrada.");
+        return null;
+    }
+
+   public void getMusicas() {
+    for (int i = 0; i < getQuantidadeMusicas(); i++ ){
+        if (musicas[i] != null) {
+            System.out.println((i + 1) + ". " + musicas[i].getTitulo() + " - " + musicas[i].getArtista() + " (" + musicas[i].getDuracaoFormatada() + ")");
+        }
+        }
+   }
+
     
 }
 

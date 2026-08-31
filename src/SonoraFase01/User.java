@@ -3,12 +3,14 @@ package SonoraFase01;
 public class User {
     private String nome;
     private String email;
-    private static int id;
+    private int id;
+    private static int contador;
 
     public User(String nome, String email) {
         this.nome = nome;
         this.email = email;
-        id++;
+        contador++;
+        id = contador;
     }
 
     public String getNome() {
@@ -19,7 +21,7 @@ public class User {
         return email;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 }
