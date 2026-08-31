@@ -1,7 +1,4 @@
 # SONORA FASE 1
-O Sonora, funciona, compila, faz o cadastro rodar. Mas ele é ingênuo: se você mandar criar uma música com
-duração negativa, ele obedece. Se o usuário digitar letra onde era para digitar número, o programa explode na
-cara dele com aquela pilha de vermelho no console. Nesta fase a gente resolve isso.
 
 ## Implementações:
 - Classes e métodos
