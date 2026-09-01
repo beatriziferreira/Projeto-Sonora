@@ -1,4 +1,4 @@
-package SonoraFase02;
+package SonoraFase03;
 
 import java.util.Scanner;
 
