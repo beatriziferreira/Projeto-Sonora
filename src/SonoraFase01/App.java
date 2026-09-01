@@ -144,18 +144,17 @@ public class App {
                     System.out.println("Digite o nome da playlist: ");
                     String nomePlaylist = scan.next();
                     Playlist playlist = null;
-
                     for (int i = 0; i < plataforma.getQuantidadePlaylists(); i++) {
                         playlist = plataforma.getPlaylistNaPosicao(i);
-
                         if (playlist != null && playlist.getNome().equalsIgnoreCase(nomePlaylist)) {
                             playlist.exibirPlaylist();
                             break;
-                        }
-                    }
-                    if (playlist == null) {
+                        } else if (playlist == null) {
                         System.out.println("Playlist não encontrada.");
                     }
+
+                    }
+                    
                     break;
                 case 0:
                     System.out.println("Saindo do programa...");
