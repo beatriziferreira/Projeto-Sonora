@@ -118,11 +118,17 @@ public class App {
                     break;
                 case 4:
                     System.out.print("Digite o ID da música: ");
-                    int id = scan.nextInt();
-                    Musica musicaEncontrada = plataforma.buscarMusica(id);
-                    if (musicaEncontrada != null) {
-                        System.out.println("Música encontrada: " + musicaEncontrada.getTitulo() + " - "
-                                + musicaEncontrada.getArtista());
+                    try {
+                        int id = Integer.parseInt(scan.next());
+                        Musica musicaEncontrada = plataforma.buscarMusica(id);
+                        if (musicaEncontrada != null) {
+                            System.out.println("Música encontrada: " + musicaEncontrada.getTitulo() + " - "
+                                    + musicaEncontrada.getArtista());
+                        } else {
+                            System.out.println("Música não encontrada.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro: O ID precisa ser um número.");
                     }
                     break;
                 case 5:
@@ -194,6 +200,8 @@ public class App {
 
                                 } catch (IndexOutOfBoundsException e) {
                                     System.out.println("Erro: " + e.getMessage());
+                                } finally {
+                                    System.out.println("Operação finalizada.");
                                 }
 
                                 break;
