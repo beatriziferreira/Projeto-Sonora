@@ -1,4 +1,4 @@
-package SonoraFase01;
+package SonoraFase02;
 
 public class Plataforma {
     private User[] usuarios = new User[500];
@@ -24,9 +24,6 @@ public class Plataforma {
             if (musicas[i] == null) {
                 musicas[i] = musica;
                 return true;
-            }
-            else if (musica == null) {
-                return false;
             }
         }
         System.out.println("A plataforma está cheia.");

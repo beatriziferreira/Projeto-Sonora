@@ -54,10 +54,10 @@ public class Playlist {
 
     public boolean removerMusica(int posicao) {
         if (posicao >= 0 && posicao < quantidadeMusicas) {
+            musicas[posicao] = null;
             for (int i = posicao; i < quantidadeMusicas; i++) {
-                musicas[i] = musicas[i - 1]; // Se der ruim é aq que arruma
+                musicas[i] = musicas[i + 1]; // Se der ruim é aq que arruma
             }
-            musicas[quantidadeMusicas] = null;
             quantidadeMusicas--;
             return true;
         }
@@ -92,7 +92,7 @@ public class Playlist {
         for (int i = 0; i < quantidadeMusicas; i++) {
             if (musicas[i] != null) {
                 System.out.println((i + 1) + ". " + musicas[i].getTitulo() + " - " + musicas[i].getArtista() +
-                        " (" + musicas[i].getDuracaoFormatada() + ")");
+                        " (" + musicas[i].getDuracaoFormatada() + ") [Reproduções totais: " + musicas[i].getReproducoes() +"]");
             }
         }
     }
