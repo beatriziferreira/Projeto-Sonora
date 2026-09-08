@@ -1,33 +1,28 @@
-# SONORA FASE 2
-O Sonora, funciona, compila, faz o cadastro rodar. Mas ele é ingênuo: se você mandar criar uma música com
-duração negativa, ele obedece. Se o usuário digitar letra onde era para digitar número, o programa explode na
-cara dele com aquela pilha de vermelho no console. Nesta fase a gente resolve isso.
+# SONORA FASE 3
+Até agora, você testou o Sonora manualmente: executava o menu, digitava algumas entradas e verificava se a
+saída parecia correta. Isso funciona no início, mas não acompanha o crescimento do projeto. Conforme o
+sistema evolui, repetir todos os testes à mão a cada alteração se torna trabalhoso, e um erro antigo pode
+voltar sem ser percebido.
+
+Teste unitário e o checklist antes de lançar o foguete: um conjunto de verificações automáticas que roda em
+segundos e te avisa na hora se alguma coisa quebrou. Nesta fase você vai transformar aquele testar no olho
+em testes de verdade, escritos em JUnit 6, que comprovam o comportamento das suas classes, incluindo as
+exceções que você adicionou na Fase 02.
+
+E tem um detalhe honesto: se algum teste seu falhar, pode ser que ele tenha achado um bug que estava
+escondido na sua Fase 02. Ótimo. Era exatamente para isso que ele serve.
 
 ## Implementações novas:
-- Tratamento de exceções
-- Try e catch
-- Throw
+- Plano de testes
 
 ## O que deve ter:
-1. Tentar cadastrar uma música com título vazio e mostrar que a IllegalArgumentException foi lançada
-e tratada (o programa avisa e continua vivo).
+1. Use @Test em cada método e @DisplayName com a descrição do caso (o texto da coluna Descrição).
+Assim o relatório de testes fica legível e amarra o código ao plano.
 
-2. Tentar cadastrar uma música com duração zero ou negativa e mostrar o mesmo comportamento.
+2. Casos normais: use assertEquals, assertTrue, assertFalse, assertNull ou assertNotNull, conforme o caso.
 
-3. Tentar cadastrar um usuário com e-mail sem @ e mostrar a exceção sendo tratada.
+3. Casos de exceção: use assertThrows, verificando o tipo exato da exceção. Não basta estourar, tem que
+estourar a exceção certa.
 
-4. Pedir getNaPosicao de uma posição que não existe e mostrar que agora vem
-IndexOutOfBoundsException (tratada), e não null.
-
-5. Encher a playlist e tentar adicionar a 101a, mostrando que adicionar ainda devolve false (isto continua
-sendo retorno, não exceção).
-
-6. Buscar uma música por um id que não existe e mostrar que ainda vem null (também continua retorno).
-
-7. No menu, digitar uma letra onde se espera um número e mostrar que o programa avisa e pede de novo,
-sem cair.
-
-8. Disparar um bloco com múltiplos catch e provocar duas exceções diferentes para mostrar cada catch
-agindo.
-
-9. Mostrar o finally executando tanto num caso de sucesso quanto num caso de erro.
+4. Use @BeforeEach para montar o cenário base que se repete (por exemplo, uma Plataforma já com
+algumas músicas e um usuário cadastrados), em vez de repetir esse preparo em cada método.
