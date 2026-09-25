@@ -85,9 +85,7 @@ public class Playlist {
         System.out.println("Músicas:");
         for (int i = 0; i < musicas.size(); i++) {
             if (musicas.get(i) != null) {
-                System.out.println((i + 1) + ". " + musicas.get(i).getTitulo() + " - " + musicas.get(i).getArtista() +
-                        " (" + musicas.get(i).getDuracaoFormatada() + ") [Reproduções totais: "
-                        + musicas.get(i).getReproducoes() + "]");
+                System.out.println((i + 1) + ". " + musicas.get(i).toString());
             }
         }
     }

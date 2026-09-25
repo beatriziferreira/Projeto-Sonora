@@ -59,6 +59,6 @@ public class Conteudo {
 
     @Override
     public String toString() {
-        return "[" + getId() + "] " + titulo + " (" + getDuracaoFormatada() + ")";
+        return titulo + " (" + getDuracaoFormatada() + ")";
     }
 }

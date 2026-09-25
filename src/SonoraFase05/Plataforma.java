@@ -5,6 +5,8 @@ public class Plataforma {
     private ArrayList<User> usuarios = new ArrayList<User>();
     private ArrayList<Musica> musicas = new ArrayList<Musica>();
     private ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+    private ArrayList<Podcast> podcasts = new ArrayList<Podcast>();
+    private ArrayList<Episodios> episodios = new ArrayList<Episodios>();
 
     public boolean cadastrarUsuario(User usuario) {
         usuarios.add(usuario);
@@ -37,6 +39,26 @@ public class Plataforma {
         return null;
     }
 
+    public Podcast buscarPodcast (int id) {
+        for (Podcast podcast : podcasts) {
+            if (podcast != null && podcast.getId() == id) {
+                return podcast;
+            }
+        }
+        System.out.println("Podcast não encontrado.");
+        return null;
+    }
+
+    public Podcast buscarPodcast (String titulo) {
+        for (Podcast podcast : podcasts) {
+            if (podcast != null && podcast.getTitulo().equalsIgnoreCase(titulo)) {
+                return podcast;
+            }
+        }
+        System.out.println("Podcast não encontrado.");
+        return null;
+    }
+
 
     public User buscarUsuario (String dono) {
         for (User usuario : usuarios) {
@@ -60,8 +82,24 @@ public class Plataforma {
 
     }
 
+     public int getQuantidadePodcasts() {
+        int quantidadePodcasts = 0;
+        for (Podcast podcast : podcasts) {
+            if (podcast != null) {
+                quantidadePodcasts++;
+            }
+        }
+        return quantidadePodcasts;
+
+    }
+
     public boolean cadastrarPlaylist(Playlist playlist) {
         playlists.add(playlist);
+        return true;
+    } 
+
+    public boolean cadastrarEpisodio(Episodios ep) {
+        episodios.add(ep);
         return true;
     } 
     
@@ -76,13 +114,39 @@ public class Plataforma {
         return null;
     }
 
+    public Episodios buscarEp (String nomeEp) {
+        for (int i = 0; i < playlists.size(); i++) {
+            if (episodios.get(i).getNome().equalsIgnoreCase(nomeEp)) {
+                return episodios.get(i);
+            }
+        }
+        System.out.println("A lista de podcasts não encontrada.");
+        return null;
+    }
+
    public void getMusicas() {
-        for (int i = 0; i < musicas.size(); i++ ){
+        for (int i = 0; i < musicas.size(); i++) {
             if (musicas.get(i) != null) {
-                System.out.println((i + 1) + ". " + musicas.get(i).getTitulo() + " - " + musicas.get(i).getArtista() + " (" + musicas.get(i).getDuracaoFormatada() + ")");
+                System.out.println((i + 1) + ". " + musicas.get(i).toString());
             }
         }
    }
+
+
+   public void getPodcasts() {
+        for (int i = 0; i < podcasts.size(); i++) {
+            if (podcasts.get(i) != null) {
+                System.out.println((i + 1) + ". " + podcasts.get(i).toString());
+            }
+        }
+   }
+
+   public boolean cadastrarPodcast(Podcast podcast) {
+        podcasts.add(podcast);
+        return true;
+    } 
+
+   
 
     
 }
