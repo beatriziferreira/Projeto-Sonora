@@ -269,8 +269,7 @@ public class App {
                             if (musicaReproduzir != null) {
                                 musicaReproduzir.reproduzir();
                                 System.out.println("Reproduzindo " + musicaReproduzir.toString());
-                                System.out.println("Reproduções totais de " + musicaReproduzir.getTitulo()
-                                        + " na plataforma: " + musicaReproduzir.getReproducoes());
+                                System.out.println("Reproduções totais de " + musicaReproduzir.getTitulo() + " na plataforma: " + musicaReproduzir.getReproducoes());
                             }
                             break;
                         case 2:
@@ -296,7 +295,7 @@ public class App {
                     break;
 
                 case 8:
-                    System.out.print("Digite [1] para gerenciar uma playlist e [2] para gerenciar uma  podcast: ");
+                    System.out.print("Digite [1] para gerenciar uma playlist e [2] para gerenciar uma lista de podcasts: ");
                     int op4 = 0;
                     try {
                         op4 = Integer.parseInt(scan.next());
