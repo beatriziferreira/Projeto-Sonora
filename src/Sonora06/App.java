@@ -522,15 +522,15 @@ public class App {
         plataforma.cadastrarMusica(new Musica("NewRules", 209, "DuaLipa", "DuaLipa"));
         plataforma.cadastrarMusica(new Musica("DontStartNow", 183, "DuaLipa", "FutureNostalgia"));
 
-        Musica m41 = new Musica("Poker Face", 238, "Lady Gaga", "The Fame");
-        Musica m42 = new Musica("Bad Romance", 295, "Lady Gaga", "The Fame Monster");
+        Musica m41 = new Musica("PokerFace", 238, "Lady Gaga", "The Fame");
+        Musica m42 = new Musica("BadRomance", 295, "Lady Gaga", "The Fame Monster");
         Musica m43 = new Musica("Umbrella", 276, "Rihanna", "Good Girl Gone Bad");
         Musica m44 = new Musica("Diamonds", 225, "Rihanna", "Unapologetic");
         Musica m45 = new Musica("Havana", 217, "Camila Cabello", "Camila");
         Musica m46 = new Musica("Despacito", 229, "Luis Fonsi", "Vida");
-        Musica m47 = new Musica("Shape of My Heart", 253, "Sting", "Ten Summoner's Tales");
+        Musica m47 = new Musica("ShapeOfMyHeart", 253, "Sting", "Ten Summoner's Tales");
         Musica m48 = new Musica("Zombie", 306, "The Cranberries", "No Need to Argue");
-        Musica m49 = new Musica("Everybody Wants to Rule the World", 251, "Tears for Fears",
+        Musica m49 = new Musica("EverybodyWantsToRuleTheWorld", 251, "Tears for Fears",
                 "Songs from the Big Chair");
         Musica m50 = new Musica("Africa", 295, "Toto", "Toto IV");
 
