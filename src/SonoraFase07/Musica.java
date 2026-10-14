@@ -1,0 +1,26 @@
+package SonoraFase07;
+
+public class Musica extends Conteudo {
+    private String album;
+    private String artista;
+
+    public Musica(String titulo, int duracaoSegundos, String artista, String album) {
+        super(titulo, duracaoSegundos);
+        setArtista(artista);
+        setAlbum(album);
+    }
+    public String getAlbum() { return album; }
+    public void setAlbum(String album) {
+        if (album == null || album.trim().isEmpty()) throw new IllegalArgumentException("O álbum não pode ser nulo ou vazio.");
+        this.album = album;
+    }
+    public String getArtista() { return artista; }
+    public void setArtista(String artista) {
+        if (artista == null || artista.trim().isEmpty()) throw new IllegalArgumentException("O artista não pode ser nulo ou vazio.");
+        this.artista = artista;
+    }
+    @Override
+    public String getCreditos() { return artista + " (" + album + ")"; }
+    @Override
+    public String toString() { return super.toString() + " - " + artista + " (" + album + ")"; }
+}
